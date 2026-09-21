@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VOC Port Smart Container Tracker — Thoothukudi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root{--bg:#0d1220;--card:#161d31;--line:#263150;--txt:#e8edf7;--dim:#8fa0c0;
+        --acc:#37d0a0;--warn:#ffb454;--bad:#ff6b6b;}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--txt);font-family:"Segoe UI",system-ui,sans-serif}
+  header{padding:16px 24px;border-bottom:1px solid var(--line);display:flex;
+         align-items:baseline;gap:14px;flex-wrap:wrap}
+  header h1{font-size:1.15rem;letter-spacing:.4px}
+  header .sub{color:var(--dim);font-size:.8rem}
+  .badge{margin-left:auto;font-size:.72rem;padding:4px 10px;border-radius:99px;
+         border:1px solid var(--acc);color:var(--acc)}
+  .badge.bad{border-color:var(--bad);color:var(--bad)}
+  main{padding:18px 24px;display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+  @media(max-width:1000px){main{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+        padding:16px 18px;margin-bottom:16px}
+  .card h2{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;
+           color:var(--dim);margin-bottom:12px}
+  .mono{font-family:ui-monospace,Consolas,monospace}
+  /* status stepper */
+  .steps{display:flex;justify-content:space-between;margin:10px 0 4px;position:relative}
+  .steps::before{content:"";position:absolute;top:11px;left:5%;right:5%;
+                 border-top:2px solid var(--line)}
+  .step{position:relative;text-align:center;flex:1;z-index:1}
+  .dot{width:22px;height:22px;border-radius:50%;margin:0 auto;background:#2a3556;
+       border:2px solid var(--line);display:flex;align-items:center;
+       justify-content:center;font-size:.65rem}
+  .step.done .dot{background:var(--acc);border-color:var(--acc);color:#04281c}
+  .step.cur .dot{background:var(--warn);border-color:var(--warn);color:#3a2503;
+                 box-shadow:0 0 0 5px rgba(255,180,84,.15)}
+  .step small{display:block;margin-top:6px;color:var(--dim);font-size:.6rem}
+  .step.done small,.step.cur small{color:var(--txt)}
+  table{width:100%;border-collapse:collapse;font-size:.78rem}
+  td,th{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;
+        vertical-align:top}
+  th{color:var(--dim);font-weight:600;text-transform:uppercase;font-size:.62rem;
+     letter-spacing:.8px}
+  .hash{color:var(--acc);font-family:ui-monospace,monospace;font-size:.66rem}
+  .pred{font-size:2.4rem;font-weight:700;color:var(--warn)}
+  .pred small{font-size:.85rem;color:var(--dim);font-weight:400}
+  .muted{color:var(--dim);font-size:.75rem}
+  #map{height:250px;border-radius:10px;border:1px solid var(--line);z-index:0}
+  .feed div{padding:7px 0;border-bottom:1px dashed var(--line);font-size:.78rem}
+  .feed .t{color:var(--dim);font-size:.66rem}
+  button{background:#1c2743;border:1px solid var(--line);color:var(--txt);
+         padding:8px 12px;border-radius:8px;cursor:pointer;font-size:.78rem}
+  button:hover{border-color:var(--acc)}
+  button.acc{background:var(--acc);color:#04281c;border-color:var(--acc);
+             font-weight:600}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  input,select{background:#0f1526;border:1px solid var(--line);color:var(--txt);
+               padding:8px;border-radius:8px;font-size:.78rem}
+  #toast{position:fixed;bottom:20px;right:20px;background:#1c2743;border:1px solid
+         var(--line);padding:12px 16px;border-radius:10px;font-size:.8rem;
+         max-width:380px;display:none;z-index:999}
+  .explain{background:#0f1526;border:1px dashed var(--line);border-radius:10px;
+           padding:12px 14px;font-size:.74rem;color:var(--dim);line-height:1.55;
+           margin-bottom:12px}
+  .explain b{color:var(--txt)}
+  /* blockchain visualizer */
+  .chain{display:flex;flex-direction:column;gap:0;max-height:430px;overflow-y:auto}
+  .block{border:1px solid var(--line);border-left:4px solid var(--acc);
+         border-radius:10px;padding:10px 12px;margin-bottom:14px;background:#0f1526}
+  .block .bh{display:flex;justify-content:space-between;font-size:.75rem;
+             margin-bottom:4px}
+  .block .ev{font-weight:600}
+  .block .meta{font-size:.68rem;color:var(--dim)}
+  .block .link{display:flex;align-items:center;gap:8px;font-size:.64rem;
+               color:var(--dim);margin-top:6px}
+  .arrow{color:var(--warn);font-size:.9rem;text-align:center;line-height:1}
+  .chip{display:inline-block;font-size:.62rem;padding:2px 8px;border-radius:99px;
+        border:1px solid var(--line);color:var(--dim);margin-left:6px}
+  .mlres{font-size:1.8rem;font-weight:700;color:var(--warn);margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+  <h1>⚓ VOC Port Smart Container Tracker</h1>
+  <span class="sub">V.O. Chidambaranar Port · Thoothukudi · Blockchain × ML × IoT</span>
+  <span class="badge" id="mlBadge">ML: …</span>
+  <span class="badge" id="chainBadge">ledger: …</span>
+</header>
+<main>
+  <div>
+    <div class="card">
+      <h2>Live Shipments <span id="shipCount" class="chip"></span></h2>
+      <div id="ships"><span class="muted">Run <span class="mono">iot_simulator/seed_demo.py</span>
+        to load demo containers…</span></div>
+    </div>
+    <div class="card">
+      <h2>Thoothukudi Harbour — Live Position</h2>
+      <div id="map"></div>
+    </div>
+    <div class="card">
+      <h2>🧠 ML Delay-Prediction Layer</h2>
+      <div id="mlstat" class="muted">checking model…</div>
+      <div class="row">
+        <select id="p_trade"><option>Export</option><option>Import</option></select>
+        <select id="p_cat">
+          <option>Seafood</option><option>Granite</option><option>Salt</option>
+          <option>Sugar</option><option>Textiles</option><option>Machinery</option>
+          <option>Coal</option><option>Electronics</option><option>Chemicals</option>
+          <option>Timber</option>
+        </select>
+        <select id="p_type">
+          <option>Reefer</option><option>Dry</option><option>ODC</option>
+          <option>Hazardous</option><option>LiquidBulk</option>
+        </select>
+        <select id="p_term"><option>PSA_SICAL</option><option>DBGT</option></select>
+        <select id="p_month">
+          <option value="1">Jan</option><option value="2">Feb</option>
+          <option value="3">Mar</option><option value="4">Apr</option>
+          <option value="5">May</option><option value="6">Jun</option>
+          <option value="7">Jul</option><option value="8">Aug</option>
+          <option value="9" selected>Sep</option><option value="10">Oct (monsoon)</option>
+          <option value="11">Nov (monsoon)</option><option value="12">Dec (monsoon)</option>
+        </select>
+        <input type="date" id="p_date">
+      </div>
+      <div class="row">
+        <label class="muted" style="font-size:.75rem;align-self:center">berth queue (VOC ~82%)</label>
+        <input type="range" id="p_queue" min="55" max="99" value="82" style="width:150px">
+        <span id="p_queuev" class="mono" style="align-self:center">0.82</span>
+        <label class="muted" style="font-size:.75rem;align-self:center">
+          <input type="checkbox" id="p_exam" style="width:auto"> customs exam</label>
+        <button class="acc" onclick="testPredict()">Predict delay</button>
+      </div>
+      <div id="p_result" class="muted" style="margin-top:8px">
+        Tip: compare Seafood/Reefer (priority) vs Coal/Import in October monsoon.</div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h2>⛓ Blockchain Layer — Tamper-Proof Event Chain</h2>
+      <div class="explain">
+        Every event is a <b>block</b>: its SHA-256 <b>hash</b> is computed over its own data
+        <b>plus the previous block's hash</b>. Change one character anywhere and every
+        later hash stops matching — <b>detection is mathematically certain, and no admin
+        can secretly rewrite history</b>. The <span class="mono">contracts/</span> folder
+        holds the identical rule-set as an Ethereum smart contract (Sepolia path).
+      </div>
+      <div class="row" style="margin-top:0">
+        <button onclick="verifyChain()">🔍 Verify real chain</button>
+        <button onclick="tamperDemo()">🧨 Run hacker-tamper demo</button>
+        <button onclick="resetDemo()">♻ Reset demo</button>
+      </div>
+      <div id="verify" class="muted" style="margin-top:8px"></div>
+      <div class="chain" id="chainviz" style="margin-top:10px"></div>
+    </div>
+    <div class="card">
+      <h2>Manual Event Panel (role enforcement)</h2>
+      <div class="row">
+        <input id="m_cid" placeholder="Container ID" style="width:150px">
+        <select id="m_ev">
+          <option>INSPECTED</option><option>CLEARED</option>
+          <option>DISPATCHED</option><option>PAYMENT_RELEASED</option>
+        </select>
+        <select id="m_role">
+          <option>CUSTOMS</option><option>PORT_AUTHORITY</option>
+          <option>TRANSPORTER</option><option>SYSTEM</option>
+        </select>
+        <button onclick="sendManual()">Fire event</button>
+      </div>
+      <div id="manual" class="muted" style="margin-top:6px">
+        Try firing CLEARED as TRANSPORTER — the ledger will reject it.</div>
+    </div>
+  </div>
+</main>
+<div id="toast"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const FLOW=["ARRIVED","INSPECTED","CLEARED","PAYMENT_RELEASED","DISPATCHED"];
+const PTS=[[8.4698,78.1259],[8.4718,78.1225],[8.4735,78.1190],[8.4775,78.1130],
+           [8.4833,78.1065]];
+let map, marker;
+function toast(m,ok=true){const t=document.getElementById("toast");
+  t.style.display="block";t.style.borderColor=ok?"var(--acc)":"var(--bad)";
+  t.textContent=m;setTimeout(()=>t.style.display="none",6000);}
+
+async function post(url,p){const r=await fetch(url,{method:"POST",
+  headers:{"Content-Type":"application/json"},body:JSON.stringify(p)});
+  return r.json();}
+async function verifyChain(){const r=await(await fetch("/api/verify")).json();
+  document.getElementById("verify").innerHTML=r.ok
+    ? "✅ Real chain intact — "+r.blocks+" blocks, every SHA-256 hash recomputed and matched."
+    : "❌ TAMPER DETECTED at block #"+r.tampered_block+" — runtime/ledger.json was altered!";}
+async function tamperDemo(){const r=await(await fetch("/api/demo-tamper")).json();
+  document.getElementById("verify").innerHTML="🧨 "+esc(r.message)+
+    (r.detected?" <b style='color:var(--acc)'>→ detection works ✓</b>":" <b style='color:var(--bad)'>→ NOT DETECTED ✗</b>");}
+async function resetDemo(){await fetch("/api/reset",{method:"POST"});
+  toast("Demo reset — fresh genesis block.");refresh();}
+async function sendManual(){const p={container_id:document.getElementById("m_cid").value,
+  event:document.getElementById("m_ev").value,
+  role:document.getElementById("m_role").value};
+  const r=await post("/api/event",p);
+  document.getElementById("manual").innerHTML=r.ok
+    ? "✅ Accepted: <b>"+p.event+"</b> by "+p.role
+    : "⛔ <span style='color:var(--bad)'>"+esc(r.error)+"</span>";
+  if(r.ok)toast(p.event+" recorded on the ledger.");refresh();}
+
+async function loadHealth(){
+  try{const h=await(await fetch("/api/health")).json();
+    const b=document.getElementById("mlBadge");
+    b.textContent=h.model_loaded?"ML: ✓ model loaded":"ML: ✗ model missing";
+    b.className="badge"+(h.model_loaded?"":" bad");
+    if(h.metrics&&h.metrics.mae_hours)
+      document.getElementById("mlstat").innerHTML=
+        "Random Forest · holdout MAE <b>"+h.metrics.mae_hours+" h</b> · RMSE "+
+        h.metrics.rmse_hours+" h · R² "+h.metrics.r2+" ("+h.metrics.holdout+")";
+  }catch(e){document.getElementById("mlBadge").textContent="ML: ✗ unreachable";
+    document.getElementById("mlBadge").className="badge bad";}}
+
+function testPredict(){
+  const d=new Date(document.getElementById("p_date").value||Date.now());
+  const row={trade:p_trade.value,cargo_category:p_cat.value,
+    cargo_type:p_type.value,terminal:p_term.value,
+    month:+p_month.value,day_of_week:d.getDay()===0?6:d.getDay()-1,
+    is_weekend:(d.getDay()===0||d.getDay()===6)?1:0,
+    is_holiday:0,is_monsoon:[10,11,12].includes(+p_month.value)?1:0,
+    customs_exam:document.getElementById("p_exam").checked?1:0,
+    vessel_queue:+p_queue.value/100};
+  post("/api/predict",row).then(r=>{
+    document.getElementById("p_result").innerHTML=
+      "<span class='mlres'>"+r.predicted_delay_hours+" h</span>"+
+      " <span class='muted'>predicted clearance delay</span>"+
+      " <span class='mono muted' style='font-size:.68rem'>"+JSON.stringify(row)+"</span>";});}
+
+document.getElementById("p_queue").oninput=e=>
+  document.getElementById("p_queuev").textContent=(e.target.value/100).toFixed(2);
+
+function stepper(status){const i=FLOW.indexOf(status);
+  return '<div class="steps">'+FLOW.map((s,j)=>
+    '<div class="step '+(j<i?"done":j===i?"cur":"")+'"><div class="dot">'+
+    (j<i?"✓":j+1)+'</div><small>'+s.replace("_","<br>")+"</small></div>").join("")+"</div>";}
+function fmt(ts){return new Date(ts*1000).toLocaleString();}
+function esc(s){return (s||"").replace(/[<>&]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;"}[c]));}
+
+async function refresh(){
+  const d=await (await fetch("/api/state")).json();
+  const b=document.getElementById("chainBadge");
+  b.textContent="ledger: "+(d.ledger_ok?"✓ intact":"✗ TAMPERED")+" · "+
+    d.ledger_blocks+" blocks";
+  b.className="badge"+(d.ledger_ok?"":" bad");
+  document.getElementById("shipCount").textContent=d.shipments.length+" active";
+
+  const el=document.getElementById("ships");
+  if(!d.shipments.length){el.innerHTML='<span class="muted">Run '+
+    '<span class="mono">iot_simulator/seed_demo.py</span> to load containers…</span>';}
+  else el.innerHTML=d.shipments.map(s=>{
+    const det=s.details||{};
+    const pred=s.prediction?("<span class='chip' style='border-color:var(--warn);"+
+      "color:var(--warn)'>ML: "+s.prediction.predicted_delay_hours+" h predicted</span>"):"";
+    return "<div style='margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:14px'>"+
+      "<b class='mono'>"+esc(s.container_id)+"</b> "+
+      "<span class='chip'>owner: "+esc(det.owner||"—")+"</span>"+pred+"<br>"+
+      "<span class='muted'>🚢 "+esc(det.vessel||"")+" · "+esc(det.cargo_category||"")+" ("+
+      esc(det.cargo_type||"")+") · "+esc(det.trade||"")+" · "+esc(det.terminal||"")+
+      " · arrived "+esc(det.arrival_date||"")+"</span>"+stepper(s.status)+
+      "<div class='feed'>"+s.history.slice(-2).reverse().map(h=>
+        "<div>"+h.status.replace(/_/g," ")+" — "+esc(h.actor)+
+        " <span class='t'>· "+fmt(h.ts)+" "+esc(h.note||"")+"</span></div>").join("")+
+      "</div></div>";}).join("");
+
+  // map: follow the most "active" (least advanced) container
+  const active=d.shipments.filter(s=>s.status!=="DISPATCHED")
+    .sort((a,b)=>FLOW.indexOf(a.status)-FLOW.indexOf(b.status))[0]
+    ||d.shipments[d.shipments.length-1];
+  if(active&&map&&marker){marker.setLatLng(PTS[Math.max(0,FLOW.indexOf(active.status))]);}
+
+  // blockchain visualizer
+  const tail=d.ledger_tail;
+  document.getElementById("chainviz").innerHTML=tail.map((blk,i)=>{
+    const prev=blk.prev_hash?blk.prev_hash.slice(0,16)+"…":"GENESIS";
+    return (i>0?'<div class="arrow">▲<br>contains hash of block #'+(blk.index-1)+"</div>":"")+
+      '<div class="block"><div class="bh"><span class="ev">#'+blk.index+" "+
+      esc(blk.data.event)+"</span><span class='muted mono'>"+fmt(blk.timestamp)+"</span></div>"+
+      "<div class='meta'>actor: "+esc(blk.data.actor||"—")+
+      (blk.data.container_id?" · container "+esc(blk.data.container_id):"")+
+      (blk.data.note?" · "+esc(blk.data.note):"")+"</div>"+
+      '<div class="link">prev: <span class="hash">'+prev+'</span> → '+
+      'hash: <span class="hash">'+blk.hash.slice(0,16)+"…</span></div></div>";
+  }).reverse().join("");
+}
+try{ map=L.map("map").setView([8.4736,78.1210],14);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {attribution:"© OpenStreetMap"}).addTo(map);
+  L.marker(PTS[0]).addTo(map).bindPopup("VOC Port container berths").openPopup();
+  L.marker(PTS[4]).addTo(map).bindPopup("Port gate — NH toward Thoothukudi city");
+  L.polyline(PTS,{dashArray:"6 6",color:"#37d0a0"}).addTo(map);
+  marker=L.circleMarker(PTS[0],{radius:8,color:"#ffb454",fillOpacity:.9}).addTo(map);
+}catch(e){document.getElementById("map").innerHTML=
+  "<span class='muted'>Map needs internet (OpenStreetMap tiles). All other features work offline.</span>";}
+document.getElementById("p_date").valueAsDate=new Date();
+loadHealth(); refresh(); setInterval(refresh,2000);
+</script>
+</body>
+</html>
