@@ -1,4 +1,4 @@
-# ⚓ VOC Port Smart Container Tracker — Thoothukudi
+# VOC Port Smart Container Tracker — Thoothukudi
 
 A working prototype that answers one question: **can every party who touches a
 container at V.O. Chidambaranar Port trust the same picture of it — and know
@@ -6,16 +6,16 @@ what's coming before it goes wrong?**
 
 Three technologies, each covering a blind spot the others have:
 
-| Layer | What it does in this repo |
-|---|---|
-| **IoT (simulated)** | `iot_simulator/simulate.py` emits the raw events (arrival, inspection…) that in production would come from VOC Port's RFID gate system / berth sensors |
-| **Blockchain** | `backend/core.py` keeps an append-only **SHA-256 hash-chained ledger** (any edit breaks the chain); `contracts/ContainerTracker.sol` is the identical rule-set as a deployable smart contract (optional Sepolia path) |
-| **Machine Learning** | `ml/` trains a Random Forest on a VOC-calibrated dataset to predict clearance delay at arrival |
+| Layer                | What it does in this repo                                                                                                                                                                                             |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **IoT (simulated)**  | `iot_simulator/simulate.py` emits the raw events (arrival, inspection…) that in production would come from VOC Port's RFID gate system / berth sensors                                                                |
+| **Blockchain**       | `backend/core.py` keeps an append-only **SHA-256 hash-chained ledger** (any edit breaks the chain); `contracts/ContainerTracker.sol` is the identical rule-set as a deployable smart contract (optional Sepolia path) |
+| **Machine Learning** | `ml/` trains a Random Forest on a VOC-calibrated dataset to predict clearance delay at arrival                                                                                                                        |
 
 ## Quick start (3 commands)
 
 ```bash
-# 1. Backend (zero dependencies — pure Python stdlib). Serves dashboard on :5000
+# 1. Backend : Serves dashboard on :5000
 python backend/app.py
 
 # 2. IoT simulator (new terminal). Walks a container through its full journey
@@ -45,28 +45,28 @@ DISPATCHED ─────────────►  role must be TRANSPORTER
                            ledger block #4
 ```
 
-* **Trust (blockchain layer):** every event is a block `{index, timestamp,
-  data, prev_hash, hash}`. `GET /api/verify` recomputes the chain — try
+- **Trust (blockchain layer):** every event is a block `{index, timestamp,
+data, prev_hash, hash}`. `GET /api/verify` recomputes the chain — try
   editing `runtime/ledger.json` with any text editor and click
-  *Verify chain integrity* on the dashboard: **TAMPER DETECTED**.
-* **Foresight (ML layer):** at ARRIVED the backend builds a feature row
+  _Verify chain integrity_ on the dashboard: **TAMPER DETECTED**.
+- **Foresight (ML layer):** at ARRIVED the backend builds a feature row
   (cargo, terminal, monsoon, weekend, holiday, VOC's ~82% berth queue) and
   the trained Random Forest returns predicted clearance hours.
-* **Real-time (IoT layer):** events arrive as JSON over HTTP; in production
+- **Real-time (IoT layer):** events arrive as JSON over HTTP; in production
   the identical payloads would come from RFID/GPS hardware. VOC Port already
   operates an RFID-based truck/personnel entry system, so this is a realistic
   upgrade path.
 
-## Try these in the dashboard's *Manual Event Panel*
+## Try these in the dashboard's _Manual Event Panel_
 
-1. Fire `CLEARED` as `TRANSPORTER` → ⛔ `ACCESS DENIED: 'CLEARED' requires role
-   PORT_AUTHORITY, got TRANSPORTER.`  *(role enforcement)*
-2. Fire `PAYMENT_RELEASED` as anyone → ⛔ it is automatic on `CLEARED`, never
-   manual. *(automation)*
-3. Try to skip a stage (e.g. `DISPATCHED` before `CLEARED`) → ⛔ invalid
-   transition. *(state machine)*
-4. Edit `runtime/ledger.json`, then *Verify chain integrity* → ❌ tamper
-   detected with the exact block number. *(immutability)*
+1. Fire `CLEARED` as `TRANSPORTER` → `ACCESS DENIED: 'CLEARED' requires role
+PORT_AUTHORITY, got TRANSPORTER.` _(role enforcement)_
+2. Fire `PAYMENT_RELEASED` as anyone → it is automatic on `CLEARED`, never
+   manual. _(automation)_
+3. Try to skip a stage (e.g. `DISPATCHED` before `CLEARED`) → invalid
+   transition. _(state machine)_
+4. Edit `runtime/ledger.json`, then _Verify chain integrity_ → tamper
+   detected with the exact block number. _(immutability)_
 
 ## Project layout
 
@@ -85,10 +85,10 @@ runtime/                   created at run time: ledger.json + state.json
 
 ## Honest limitations (say these in the viva)
 
-* IoT is **simulated** — payloads and cadence are realistic, but no real
+- IoT is **simulated** — payloads and cadence are realistic, but no real
   sensors are attached.
-* The ML dataset is **synthetic, calibrated to published VOC Port figures**
+- The ML dataset is **synthetic, calibrated to published VOC Port figures**
   (docs/DATASET.md) — the pipeline is the deliverable, not the exact numbers.
-* The local hash-chain is a **demonstration of immutability mechanics**; the
+- The local hash-chain is a **demonstration of immutability mechanics**; the
   production path is `contracts/ContainerTracker.sol` on a public testnet,
   where storage is distributed and independently verifiable.
