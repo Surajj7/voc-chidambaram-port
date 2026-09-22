@@ -1,76 +1,56 @@
 {
  "shipments": {
-  "TUTU5876458": {
-   "container_id": "TUTU5876458",
-   "status": "ARRIVED",
+  "TUTU0097167": {
+   "container_id": "TUTU0097167",
+   "status": "DISPATCHED",
    "history": [
     {
      "status": "ARRIVED",
      "actor": "IoT Gate / Berth Sensor",
-     "ts": 1790025679.317655,
-     "note": "Berth arrival, MV Tamil Nadu Star"
-    }
-   ],
-   "details": {
-    "vessel": "MV Tamil Nadu Star",
-    "terminal": "PSA_SICAL",
-    "trade": "Import",
-    "cargo_category": "Chemicals",
-    "cargo_type": "Hazardous",
-    "arrival_date": "2026-09-22",
-    "owner": "Ocean Network Express",
-    "berth": "Inner Harbour Berth X"
-   },
-   "prediction": {
-    "predicted_delay_hours": 81.0,
-    "features_used": {
-     "trade": "Import",
-     "cargo_category": "Chemicals",
-     "cargo_type": "Hazardous",
-     "terminal": "PSA_SICAL",
-     "month": 9,
-     "day_of_week": 1,
-     "is_weekend": 0,
-     "is_holiday": 0,
-     "is_monsoon": 0,
-     "customs_exam": 0.18,
-     "vessel_queue": 0.82
-    }
-   }
-  },
-  "TUTU8866055": {
-   "container_id": "TUTU8866055",
-   "status": "INSPECTED",
-   "history": [
-    {
-     "status": "ARRIVED",
-     "actor": "IoT Gate / Berth Sensor",
-     "ts": 1790025681.4390874,
-     "note": "Berth arrival, MV Tamil Nadu Star"
+     "ts": 1790061340.9945402,
+     "note": "Berth arrival, MV Palk Strait"
     },
     {
      "status": "INSPECTED",
      "actor": "Customs (Tuticorin Commissionerate)",
-     "ts": 1790025683.7859602,
+     "ts": 1790061343.367241,
      "note": "Risk-based exam completed"
+    },
+    {
+     "status": "CLEARED",
+     "actor": "VOC Port Authority",
+     "ts": 1790061345.6338294,
+     "note": "Customs clearance granted"
+    },
+    {
+     "status": "PAYMENT_RELEASED",
+     "actor": "SMART CONTRACT (auto)",
+     "ts": 1790061345.635831,
+     "note": "Auto-released on customs clearance"
+    },
+    {
+     "status": "DISPATCHED",
+     "actor": "Road Transporter",
+     "ts": 1790061347.893674,
+     "note": "Exited VOC Port gate toward NH-138"
     }
    ],
    "details": {
-    "vessel": "MV Tamil Nadu Star",
+    "vessel": "MV Palk Strait",
     "terminal": "DBGT",
     "trade": "Import",
-    "cargo_category": "Machinery",
-    "cargo_type": "ODC",
+    "cargo_category": "Chemicals",
+    "cargo_type": "Hazardous",
     "arrival_date": "2026-09-22",
-    "owner": "ZIM Shipping",
-    "berth": "Inner Harbour Berth X"
+    "owner": "Maersk Line",
+    "berth": "Inner Harbour Berth IX"
    },
    "prediction": {
-    "predicted_delay_hours": 83.0,
+    "predicted_delay_hours": 81.9,
     "features_used": {
      "trade": "Import",
-     "cargo_category": "Machinery",
-     "cargo_type": "ODC",
+     "cargo_category": "Chemicals",
+     "cargo_type": "Hazardous",
      "terminal": "DBGT",
      "month": 9,
      "day_of_week": 1,
@@ -78,24 +58,24 @@
      "is_holiday": 0,
      "is_monsoon": 0,
      "customs_exam": 0.18,
-     "vessel_queue": 0.84
+     "vessel_queue": 0.83
     }
    }
   },
-  "TUTU6309448": {
-   "container_id": "TUTU6309448",
+  "TUTU0194120": {
+   "container_id": "TUTU0194120",
    "status": "INSPECTED",
    "history": [
     {
      "status": "ARRIVED",
      "actor": "IoT Gate / Berth Sensor",
-     "ts": 1790025685.8425274,
+     "ts": 1790061349.953678,
      "note": "Berth arrival, MV Gulf Pearl"
     },
     {
      "status": "INSPECTED",
      "actor": "Customs (Tuticorin Commissionerate)",
-     "ts": 1790025688.2004695,
+     "ts": 1790061352.3111064,
      "note": "Risk-based exam completed"
     }
    ],
@@ -106,15 +86,53 @@
     "cargo_category": "Machinery",
     "cargo_type": "ODC",
     "arrival_date": "2026-09-22",
-    "owner": "Hapag-Lloyd",
-    "berth": "Inner Harbour Berth IX"
+    "owner": "Maersk Line",
+    "berth": "Inner Harbour Berth X"
    },
    "prediction": {
-    "predicted_delay_hours": 74.7,
+    "predicted_delay_hours": 82.1,
     "features_used": {
      "trade": "Import",
      "cargo_category": "Machinery",
      "cargo_type": "ODC",
+     "terminal": "PSA_SICAL",
+     "month": 9,
+     "day_of_week": 1,
+     "is_weekend": 0,
+     "is_holiday": 0,
+     "is_monsoon": 0,
+     "customs_exam": 0.18,
+     "vessel_queue": 0.84
+    }
+   }
+  },
+  "TUTU8168560": {
+   "container_id": "TUTU8168560",
+   "status": "ARRIVED",
+   "history": [
+    {
+     "status": "ARRIVED",
+     "actor": "IoT Gate / Berth Sensor",
+     "ts": 1790061354.3432245,
+     "note": "Berth arrival, MV Tamil Nadu Star"
+    }
+   ],
+   "details": {
+    "vessel": "MV Tamil Nadu Star",
+    "terminal": "PSA_SICAL",
+    "trade": "Import",
+    "cargo_category": "Electronics",
+    "cargo_type": "Dry",
+    "arrival_date": "2026-09-22",
+    "owner": "ZIM Shipping",
+    "berth": "Inner Harbour Berth IX"
+   },
+   "prediction": {
+    "predicted_delay_hours": 64.7,
+    "features_used": {
+     "trade": "Import",
+     "cargo_category": "Electronics",
+     "cargo_type": "Dry",
      "terminal": "PSA_SICAL",
      "month": 9,
      "day_of_week": 1,
@@ -126,20 +144,20 @@
     }
    }
   },
-  "TUTU2547311": {
-   "container_id": "TUTU2547311",
+  "TUTU1609033": {
+   "container_id": "TUTU1609033",
    "status": "INSPECTED",
    "history": [
     {
      "status": "ARRIVED",
      "actor": "IoT Gate / Berth Sensor",
-     "ts": 1790025690.2741575,
+     "ts": 1790061356.4775264,
      "note": "Berth arrival, MV Pearl City"
     },
     {
      "status": "INSPECTED",
      "actor": "Customs (Tuticorin Commissionerate)",
-     "ts": 1790025692.629746,
+     "ts": 1790061358.7918603,
      "note": "Risk-based exam completed"
     }
    ],
@@ -147,18 +165,18 @@
     "vessel": "MV Pearl City",
     "terminal": "PSA_SICAL",
     "trade": "Import",
-    "cargo_category": "Timber",
-    "cargo_type": "Dry",
+    "cargo_category": "Machinery",
+    "cargo_type": "ODC",
     "arrival_date": "2026-09-22",
-    "owner": "COSCO Shipping",
-    "berth": "Inner Harbour Berth V"
+    "owner": "Evergreen Marine",
+    "berth": "Inner Harbour Berth IX"
    },
    "prediction": {
-    "predicted_delay_hours": 70.6,
+    "predicted_delay_hours": 78.2,
     "features_used": {
      "trade": "Import",
-     "cargo_category": "Timber",
-     "cargo_type": "Dry",
+     "cargo_category": "Machinery",
+     "cargo_type": "ODC",
      "terminal": "PSA_SICAL",
      "month": 9,
      "day_of_week": 1,
@@ -166,36 +184,92 @@
      "is_holiday": 0,
      "is_monsoon": 0,
      "customs_exam": 0.18,
-     "vessel_queue": 0.83
+     "vessel_queue": 0.82
     }
    }
   },
-  "TUTU5983709": {
-   "container_id": "TUTU5983709",
-   "status": "INSPECTED",
+  "TUTU0165336": {
+   "container_id": "TUTU0165336",
+   "status": "DISPATCHED",
    "history": [
     {
      "status": "ARRIVED",
      "actor": "IoT Gate / Berth Sensor",
-     "ts": 1790025694.6616898,
-     "note": "Berth arrival, MV Pearl City"
+     "ts": 1790061360.8475122,
+     "note": "Berth arrival, MV Gulf Pearl"
     },
     {
      "status": "INSPECTED",
      "actor": "Customs (Tuticorin Commissionerate)",
-     "ts": 1790025696.9725766,
+     "ts": 1790061363.202691,
      "note": "Risk-based exam completed"
+    },
+    {
+     "status": "CLEARED",
+     "actor": "VOC Port Authority",
+     "ts": 1790061365.4610748,
+     "note": "Customs clearance granted"
+    },
+    {
+     "status": "PAYMENT_RELEASED",
+     "actor": "SMART CONTRACT (auto)",
+     "ts": 1790061365.4621072,
+     "note": "Auto-released on customs clearance"
+    },
+    {
+     "status": "DISPATCHED",
+     "actor": "Road Transporter",
+     "ts": 1790061367.7121093,
+     "note": "Exited VOC Port gate toward NH-138"
     }
    ],
    "details": {
-    "vessel": "MV Pearl City",
+    "vessel": "MV Gulf Pearl",
+    "terminal": "DBGT",
+    "trade": "Import",
+    "cargo_category": "Coal",
+    "cargo_type": "Dry",
+    "arrival_date": "2026-09-22",
+    "owner": "Evergreen Marine",
+    "berth": "Inner Harbour Berth V"
+   },
+   "prediction": {
+    "predicted_delay_hours": 78.9,
+    "features_used": {
+     "trade": "Import",
+     "cargo_category": "Coal",
+     "cargo_type": "Dry",
+     "terminal": "DBGT",
+     "month": 9,
+     "day_of_week": 1,
+     "is_weekend": 0,
+     "is_holiday": 0,
+     "is_monsoon": 0,
+     "customs_exam": 0.18,
+     "vessel_queue": 0.84
+    }
+   }
+  },
+  "TUTU7316370": {
+   "container_id": "TUTU7316370",
+   "status": "ARRIVED",
+   "history": [
+    {
+     "status": "ARRIVED",
+     "actor": "IoT Gate / Berth Sensor",
+     "ts": 1790061369.773075,
+     "note": "Berth arrival, MV Coromandel Trader"
+    }
+   ],
+   "details": {
+    "vessel": "MV Coromandel Trader",
     "terminal": "DBGT",
     "trade": "Export",
     "cargo_category": "Textiles",
     "cargo_type": "Dry",
     "arrival_date": "2026-09-22",
-    "owner": "COSCO Shipping",
-    "berth": "Inner Harbour Berth V"
+    "owner": "Maersk Line",
+    "berth": "Inner Harbour Berth IX"
    },
    "prediction": {
     "predicted_delay_hours": 40.6,
@@ -214,83 +288,57 @@
     }
    }
   },
-  "TUTU5382435": {
-   "container_id": "TUTU5382435",
-   "status": "INSPECTED",
+  "TUTU8984016": {
+   "container_id": "TUTU8984016",
+   "status": "DISPATCHED",
    "history": [
     {
      "status": "ARRIVED",
      "actor": "IoT Gate / Berth Sensor",
-     "ts": 1790025699.029345,
-     "note": "Berth arrival, MV Gulf Pearl"
+     "ts": 1790061371.9138482,
+     "note": "Berth arrival, MV Pearl City"
     },
     {
      "status": "INSPECTED",
      "actor": "Customs (Tuticorin Commissionerate)",
-     "ts": 1790025701.393327,
+     "ts": 1790061374.2651196,
      "note": "Risk-based exam completed"
+    },
+    {
+     "status": "CLEARED",
+     "actor": "VOC Port Authority",
+     "ts": 1790061376.5243,
+     "note": "Customs clearance granted"
+    },
+    {
+     "status": "PAYMENT_RELEASED",
+     "actor": "SMART CONTRACT (auto)",
+     "ts": 1790061376.5262973,
+     "note": "Auto-released on customs clearance"
+    },
+    {
+     "status": "DISPATCHED",
+     "actor": "Road Transporter",
+     "ts": 1790061378.7959678,
+     "note": "Exited VOC Port gate toward NH-138"
     }
    ],
    "details": {
-    "vessel": "MV Gulf Pearl",
-    "terminal": "PSA_SICAL",
+    "vessel": "MV Pearl City",
+    "terminal": "DBGT",
     "trade": "Import",
     "cargo_category": "Coal",
     "cargo_type": "Dry",
     "arrival_date": "2026-09-22",
-    "owner": "CMA CGM",
+    "owner": "ZIM Shipping",
     "berth": "Inner Harbour Berth V"
    },
    "prediction": {
-    "predicted_delay_hours": 77.7,
+    "predicted_delay_hours": 75.9,
     "features_used": {
      "trade": "Import",
      "cargo_category": "Coal",
      "cargo_type": "Dry",
-     "terminal": "PSA_SICAL",
-     "month": 9,
-     "day_of_week": 1,
-     "is_weekend": 0,
-     "is_holiday": 0,
-     "is_monsoon": 0,
-     "customs_exam": 0.18,
-     "vessel_queue": 0.83
-    }
-   }
-  },
-  "TUTU4804705": {
-   "container_id": "TUTU4804705",
-   "status": "INSPECTED",
-   "history": [
-    {
-     "status": "ARRIVED",
-     "actor": "IoT Gate / Berth Sensor",
-     "ts": 1790025703.4351254,
-     "note": "Berth arrival, MV Tamil Nadu Star"
-    },
-    {
-     "status": "INSPECTED",
-     "actor": "Customs (Tuticorin Commissionerate)",
-     "ts": 1790025705.8239512,
-     "note": "Risk-based exam completed"
-    }
-   ],
-   "details": {
-    "vessel": "MV Tamil Nadu Star",
-    "terminal": "DBGT",
-    "trade": "Import",
-    "cargo_category": "Chemicals",
-    "cargo_type": "Hazardous",
-    "arrival_date": "2026-09-22",
-    "owner": "CMA CGM",
-    "berth": "Inner Harbour Berth X"
-   },
-   "prediction": {
-    "predicted_delay_hours": 78.8,
-    "features_used": {
-     "trade": "Import",
-     "cargo_category": "Chemicals",
-     "cargo_type": "Hazardous",
      "terminal": "DBGT",
      "month": 9,
      "day_of_week": 1,
@@ -298,55 +346,37 @@
      "is_holiday": 0,
      "is_monsoon": 0,
      "customs_exam": 0.18,
-     "vessel_queue": 0.81
+     "vessel_queue": 0.82
     }
    }
   },
-  "TUTU9956766": {
-   "container_id": "TUTU9956766",
-   "status": "PAYMENT_RELEASED",
+  "TUTU8582066": {
+   "container_id": "TUTU8582066",
+   "status": "ARRIVED",
    "history": [
     {
      "status": "ARRIVED",
      "actor": "IoT Gate / Berth Sensor",
-     "ts": 1790025707.8710437,
-     "note": "Berth arrival, MV Manapad Point"
-    },
-    {
-     "status": "INSPECTED",
-     "actor": "Customs (Tuticorin Commissionerate)",
-     "ts": 1790025710.2406626,
-     "note": "Risk-based exam completed"
-    },
-    {
-     "status": "CLEARED",
-     "actor": "VOC Port Authority",
-     "ts": 1790025712.5005093,
-     "note": "Customs clearance granted"
-    },
-    {
-     "status": "PAYMENT_RELEASED",
-     "actor": "SMART CONTRACT (auto)",
-     "ts": 1790025712.5015063,
-     "note": "Auto-released on customs clearance"
+     "ts": 1790061380.8534954,
+     "note": "Berth arrival, MV Pearl City"
     }
    ],
    "details": {
-    "vessel": "MV Manapad Point",
+    "vessel": "MV Pearl City",
     "terminal": "PSA_SICAL",
     "trade": "Export",
-    "cargo_category": "Salt",
-    "cargo_type": "Dry",
+    "cargo_category": "Seafood",
+    "cargo_type": "Reefer",
     "arrival_date": "2026-09-22",
-    "owner": "Maersk Line",
+    "owner": "COSCO Shipping",
     "berth": "Inner Harbour Berth X"
    },
    "prediction": {
-    "predicted_delay_hours": 37.2,
+    "predicted_delay_hours": 22.0,
     "features_used": {
      "trade": "Export",
-     "cargo_category": "Salt",
-     "cargo_type": "Dry",
+     "cargo_category": "Seafood",
+     "cargo_type": "Reefer",
      "terminal": "PSA_SICAL",
      "month": 9,
      "day_of_week": 1,
@@ -354,7 +384,7 @@
      "is_holiday": 0,
      "is_monsoon": 0,
      "customs_exam": 0.18,
-     "vessel_queue": 0.8
+     "vessel_queue": 0.81
     }
    }
   }
