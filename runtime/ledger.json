@@ -1,347 +1,733 @@
 [
- {
-  "index": 0,
-  "timestamp": 1790060799.1952517,
-  "data": {
-   "event": "GENESIS",
-   "note": "VOC Port Smart Container Tracker ledger - Thoothukudi"
+  {
+    "index": 0,
+    "timestamp": 1791904357.801629,
+    "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "data": {
+      "event": "GENESIS",
+      "actor": "Smart Port Genesis Protocol",
+      "note": "VOC Port Smart Container Tracker - Thoothukudi Blockchain Genesis Block",
+      "authority": "V.O. Chidambaranar Port Authority"
+    },
+    "hash": "6df168a70d73d3ec347e8df522925b354f133931ec861b4caddeda264e94fcf9"
   },
-  "hash": "baac1b096fc165a5371b3f73e781dad3ade50a6f2c0e9a33f1bfb04f984de327"
- },
- {
-  "index": 1,
-  "timestamp": 1790061341.09679,
-  "prev_hash": "baac1b096fc165a5371b3f73e781dad3ade50a6f2c0e9a33f1bfb04f984de327",
-  "data": {
-   "container_id": "TUTU0097167",
-   "event": "ARRIVED",
-   "actor": "IoT Gate / Berth Sensor",
-   "details": {
-    "vessel": "MV Palk Strait",
-    "terminal": "DBGT",
-    "trade": "Import",
-    "cargo_category": "Chemicals",
-    "cargo_type": "Hazardous",
-    "arrival_date": "2026-09-22",
-    "owner": "Maersk Line",
-    "berth": "Inner Harbour Berth IX"
-   }
+  {
+    "index": 1,
+    "timestamp": 1791904360.2899415,
+    "prev_hash": "6df168a70d73d3ec347e8df522925b354f133931ec861b4caddeda264e94fcf9",
+    "data": {
+      "container_id": "TUTU7000039",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by Maersk Line",
+      "details": {
+        "vessel": "MV Coromandel Trader",
+        "terminal": "PSA_SICAL",
+        "trade": "Export",
+        "cargo_category": "Seafood",
+        "cargo_type": "Reefer",
+        "owner": "Maersk Line",
+        "berth": "Berth IX (PSA SICAL)",
+        "arrival_date": "2026-10-13",
+        "eta": "+3h (Approaching Outer Fairway)",
+        "origin_destination": "Colombo (Transshipment)",
+        "teu": 2
+      }
+    },
+    "hash": "b7b2df32d4ab61c86b1aba740363e64382126d48b15d87e564a8cc4d0881a276"
   },
-  "hash": "889c0544dbd5f5c498792c8cf997ca8ac50b1042b443c77e5c69393d4d1a14c3"
- },
- {
-  "index": 2,
-  "timestamp": 1790061343.367241,
-  "prev_hash": "889c0544dbd5f5c498792c8cf997ca8ac50b1042b443c77e5c69393d4d1a14c3",
-  "data": {
-   "container_id": "TUTU0097167",
-   "event": "INSPECTED",
-   "actor": "Customs (Tuticorin Commissionerate)",
-   "note": "Risk-based exam completed"
+  {
+    "index": 2,
+    "timestamp": 1791904360.37995,
+    "prev_hash": "b7b2df32d4ab61c86b1aba740363e64382126d48b15d87e564a8cc4d0881a276",
+    "data": {
+      "container_id": "TUTU7001493",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by MSC Mediterranean Shipping",
+      "details": {
+        "vessel": "MV Gulf Pearl",
+        "terminal": "DBGT",
+        "trade": "Export",
+        "cargo_category": "Salt",
+        "cargo_type": "Dry",
+        "owner": "MSC Mediterranean Shipping",
+        "berth": "Berth VIII (DBGT)",
+        "arrival_date": "2026-10-13",
+        "eta": "+6h (Approaching Outer Fairway)",
+        "origin_destination": "Port Klang",
+        "teu": 1
+      }
+    },
+    "hash": "ad49afe17cfe06417122026236d84187f65297d05a9841212ae2647ad8f3fa65"
   },
-  "hash": "b81b20f7ff7c0f5acc350f312abe2f04b08555fad85c3636f84428c458ebfccb"
- },
- {
-  "index": 3,
-  "timestamp": 1790061345.6338294,
-  "prev_hash": "b81b20f7ff7c0f5acc350f312abe2f04b08555fad85c3636f84428c458ebfccb",
-  "data": {
-   "container_id": "TUTU0097167",
-   "event": "CLEARED",
-   "actor": "VOC Port Authority",
-   "note": "Customs clearance granted"
+  {
+    "index": 3,
+    "timestamp": 1791904360.4616086,
+    "prev_hash": "ad49afe17cfe06417122026236d84187f65297d05a9841212ae2647ad8f3fa65",
+    "data": {
+      "container_id": "TUTU7002883",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by CMA CGM Group",
+      "details": {
+        "vessel": "MV Tamil Nadu Star",
+        "terminal": "PSA_SICAL",
+        "trade": "Export",
+        "cargo_category": "Granite",
+        "cargo_type": "Dry",
+        "owner": "CMA CGM Group",
+        "berth": "Berth IX (PSA SICAL)",
+        "arrival_date": "2026-10-13",
+        "eta": "+9h (Approaching Outer Fairway)",
+        "origin_destination": "Antwerp",
+        "teu": 1
+      }
+    },
+    "hash": "4c0c0c01c52646d1ff1f6d3d1e9d7d88c1667b6313725a7be7c45776fc44fa9d"
   },
-  "hash": "80f6a1693019fab55f4725c078a0e9e4fb16b40169caca5d43d10d282e3a874f"
- },
- {
-  "index": 4,
-  "timestamp": 1790061345.635831,
-  "prev_hash": "80f6a1693019fab55f4725c078a0e9e4fb16b40169caca5d43d10d282e3a874f",
-  "data": {
-   "container_id": "TUTU0097167",
-   "event": "PAYMENT_RELEASED",
-   "actor": "SMART CONTRACT (auto)",
-   "note": "Auto-released on customs clearance"
+  {
+    "index": 4,
+    "timestamp": 1791904360.5375123,
+    "prev_hash": "4c0c0c01c52646d1ff1f6d3d1e9d7d88c1667b6313725a7be7c45776fc44fa9d",
+    "data": {
+      "container_id": "TUTU7004295",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by Ocean Network Express (ONE)",
+      "details": {
+        "vessel": "MV Palk Strait",
+        "terminal": "DBGT",
+        "trade": "Export",
+        "cargo_category": "Textiles",
+        "cargo_type": "Dry",
+        "owner": "Ocean Network Express (ONE)",
+        "berth": "Berth VIII (DBGT)",
+        "arrival_date": "2026-10-13",
+        "eta": "+12h (Approaching Outer Fairway)",
+        "origin_destination": "Jebel Ali",
+        "teu": 2
+      }
+    },
+    "hash": "c3369cb13aad3a8c6e897c7506f1c0452d5eb9579628640ad6c6ff1f40783b00"
   },
-  "hash": "a41bbe45b779729a7ee8b922a2d1fb355df688e45716ededf9429494ec560c0e"
- },
- {
-  "index": 5,
-  "timestamp": 1790061347.893674,
-  "prev_hash": "a41bbe45b779729a7ee8b922a2d1fb355df688e45716ededf9429494ec560c0e",
-  "data": {
-   "container_id": "TUTU0097167",
-   "event": "DISPATCHED",
-   "actor": "Road Transporter",
-   "note": "Exited VOC Port gate toward NH-138"
+  {
+    "index": 5,
+    "timestamp": 1791904360.6185958,
+    "prev_hash": "c3369cb13aad3a8c6e897c7506f1c0452d5eb9579628640ad6c6ff1f40783b00",
+    "data": {
+      "container_id": "TUTU7005763",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by Hapag-Lloyd",
+      "details": {
+        "vessel": "MV Manapad Point",
+        "terminal": "PSA_SICAL",
+        "trade": "Export",
+        "cargo_category": "Sugar",
+        "cargo_type": "Dry",
+        "owner": "Hapag-Lloyd",
+        "berth": "Berth IX (PSA SICAL)",
+        "arrival_date": "2026-10-13",
+        "eta": "Docked",
+        "origin_destination": "Durban",
+        "teu": 1
+      }
+    },
+    "hash": "4453c926fab471bc7b4dabf8a46e5594c4faebe9d86782201e39d5243f2f319d"
   },
-  "hash": "7b5fa9ef49c4cd49d163890dc6acfef319a9cbdf7e74ebbed3d5ad7f95ba6779"
- },
- {
-  "index": 6,
-  "timestamp": 1790061350.0743203,
-  "prev_hash": "7b5fa9ef49c4cd49d163890dc6acfef319a9cbdf7e74ebbed3d5ad7f95ba6779",
-  "data": {
-   "container_id": "TUTU0194120",
-   "event": "ARRIVED",
-   "actor": "IoT Gate / Berth Sensor",
-   "details": {
-    "vessel": "MV Gulf Pearl",
-    "terminal": "PSA_SICAL",
-    "trade": "Import",
-    "cargo_category": "Machinery",
-    "cargo_type": "ODC",
-    "arrival_date": "2026-09-22",
-    "owner": "Maersk Line",
-    "berth": "Inner Harbour Berth X"
-   }
+  {
+    "index": 6,
+    "timestamp": 1791904360.6211314,
+    "prev_hash": "4453c926fab471bc7b4dabf8a46e5594c4faebe9d86782201e39d5243f2f319d",
+    "data": {
+      "container_id": "TUTU7005763",
+      "event": "ARRIVED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "RFID Berth sensor confirmed vessel MV Manapad Point docked at Berth IX (PSA SICAL)"
+    },
+    "hash": "29b8478971273216159dad3b91806accfb03f14be556e8fc8a5d8beaea94bdb8"
   },
-  "hash": "09b2e362d5865ae6e5e5a2a972714b13155460de042d9b7d8c1fd0072159a948"
- },
- {
-  "index": 7,
-  "timestamp": 1790061352.3111064,
-  "prev_hash": "09b2e362d5865ae6e5e5a2a972714b13155460de042d9b7d8c1fd0072159a948",
-  "data": {
-   "container_id": "TUTU0194120",
-   "event": "INSPECTED",
-   "actor": "Customs (Tuticorin Commissionerate)",
-   "note": "Risk-based exam completed"
+  {
+    "index": 7,
+    "timestamp": 1791904360.7632022,
+    "prev_hash": "29b8478971273216159dad3b91806accfb03f14be556e8fc8a5d8beaea94bdb8",
+    "data": {
+      "container_id": "TUTU7007143",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by Evergreen Marine",
+      "details": {
+        "vessel": "MV Pearl City Express",
+        "terminal": "DBGT",
+        "trade": "Import",
+        "cargo_category": "Machinery",
+        "cargo_type": "ODC",
+        "owner": "Evergreen Marine",
+        "berth": "Berth VIII (DBGT)",
+        "arrival_date": "2026-10-13",
+        "eta": "Docked",
+        "origin_destination": "Singapore",
+        "teu": 1
+      }
+    },
+    "hash": "92d54bc5345b4453eef732a6a246c618aed871f82a85de863483e6c215818d2c"
   },
-  "hash": "fafa066b09031191307a28f6ae526d269785ff5e569b200500807297c5abe38c"
- },
- {
-  "index": 8,
-  "timestamp": 1790061354.4234543,
-  "prev_hash": "fafa066b09031191307a28f6ae526d269785ff5e569b200500807297c5abe38c",
-  "data": {
-   "container_id": "TUTU8168560",
-   "event": "ARRIVED",
-   "actor": "IoT Gate / Berth Sensor",
-   "details": {
-    "vessel": "MV Tamil Nadu Star",
-    "terminal": "PSA_SICAL",
-    "trade": "Import",
-    "cargo_category": "Electronics",
-    "cargo_type": "Dry",
-    "arrival_date": "2026-09-22",
-    "owner": "ZIM Shipping",
-    "berth": "Inner Harbour Berth IX"
-   }
+  {
+    "index": 8,
+    "timestamp": 1791904360.7632022,
+    "prev_hash": "92d54bc5345b4453eef732a6a246c618aed871f82a85de863483e6c215818d2c",
+    "data": {
+      "container_id": "TUTU7007143",
+      "event": "ARRIVED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "RFID Berth sensor confirmed vessel MV Pearl City Express docked at Berth VIII (DBGT)"
+    },
+    "hash": "c5575fdf06e00c96632ac7cce0cb169c317b973f4ef4b7b336be6147b07fffe9"
   },
-  "hash": "42146b24fb4152e304df84d5d49ec9e8390e48a036130b8e934a751bff1a2eed"
- },
- {
-  "index": 9,
-  "timestamp": 1790061356.565414,
-  "prev_hash": "42146b24fb4152e304df84d5d49ec9e8390e48a036130b8e934a751bff1a2eed",
-  "data": {
-   "container_id": "TUTU1609033",
-   "event": "ARRIVED",
-   "actor": "IoT Gate / Berth Sensor",
-   "details": {
-    "vessel": "MV Pearl City",
-    "terminal": "PSA_SICAL",
-    "trade": "Import",
-    "cargo_category": "Machinery",
-    "cargo_type": "ODC",
-    "arrival_date": "2026-09-22",
-    "owner": "Evergreen Marine",
-    "berth": "Inner Harbour Berth IX"
-   }
+  {
+    "index": 9,
+    "timestamp": 1791904360.850603,
+    "prev_hash": "c5575fdf06e00c96632ac7cce0cb169c317b973f4ef4b7b336be6147b07fffe9",
+    "data": {
+      "container_id": "TUTU7008551",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by ZIM Integrated Shipping",
+      "details": {
+        "vessel": "MV Tuticorin Pioneer",
+        "terminal": "PSA_SICAL",
+        "trade": "Import",
+        "cargo_category": "Coal",
+        "cargo_type": "Dry",
+        "owner": "ZIM Integrated Shipping",
+        "berth": "Berth IX (PSA SICAL)",
+        "arrival_date": "2026-10-13",
+        "eta": "Docked",
+        "origin_destination": "Tanjung Pelepas",
+        "teu": 2
+      }
+    },
+    "hash": "0fb0d25eb0d7f431b63dc3caa9b506c1a965d93df29038dafc9841b0e00a0177"
   },
-  "hash": "9cf1dbc9ceb025c487e83157d8a891a832fa1bf0e80ce27d7c91a725b072805e"
- },
- {
-  "index": 10,
-  "timestamp": 1790061358.7918603,
-  "prev_hash": "9cf1dbc9ceb025c487e83157d8a891a832fa1bf0e80ce27d7c91a725b072805e",
-  "data": {
-   "container_id": "TUTU1609033",
-   "event": "INSPECTED",
-   "actor": "Customs (Tuticorin Commissionerate)",
-   "note": "Risk-based exam completed"
+  {
+    "index": 10,
+    "timestamp": 1791904360.850603,
+    "prev_hash": "0fb0d25eb0d7f431b63dc3caa9b506c1a965d93df29038dafc9841b0e00a0177",
+    "data": {
+      "container_id": "TUTU7008551",
+      "event": "ARRIVED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "RFID Berth sensor confirmed vessel MV Tuticorin Pioneer docked at Berth IX (PSA SICAL)"
+    },
+    "hash": "2ac41825d5ea9d4e8344c5cc945da4e0f4fd446b78464ccd497139f59c7915b2"
   },
-  "hash": "7dfecdaa606b2354fd4ce40bc126c57db35e9dd859e0ec3dde3e33dfa633fdb7"
- },
- {
-  "index": 11,
-  "timestamp": 1790061360.9446142,
-  "prev_hash": "7dfecdaa606b2354fd4ce40bc126c57db35e9dd859e0ec3dde3e33dfa633fdb7",
-  "data": {
-   "container_id": "TUTU0165336",
-   "event": "ARRIVED",
-   "actor": "IoT Gate / Berth Sensor",
-   "details": {
-    "vessel": "MV Gulf Pearl",
-    "terminal": "DBGT",
-    "trade": "Import",
-    "cargo_category": "Coal",
-    "cargo_type": "Dry",
-    "arrival_date": "2026-09-22",
-    "owner": "Evergreen Marine",
-    "berth": "Inner Harbour Berth V"
-   }
+  {
+    "index": 11,
+    "timestamp": 1791904360.850603,
+    "prev_hash": "2ac41825d5ea9d4e8344c5cc945da4e0f4fd446b78464ccd497139f59c7915b2",
+    "data": {
+      "container_id": "TUTU7008551",
+      "event": "INSPECTED",
+      "actor": "Customs (Tuticorin Commissionerate)",
+      "note": "Customs Commissionerate physical inspection & gamma scanner verification passed"
+    },
+    "hash": "9906c1c55efe2c561cb3b3b0945d062212848aa1756e5998cd6a1ac861e42924"
   },
-  "hash": "a0389f7d6d448b66072512dd7d0b0acb91892af984c8afb45493be97fb4f8cf5"
- },
- {
-  "index": 12,
-  "timestamp": 1790061363.202691,
-  "prev_hash": "a0389f7d6d448b66072512dd7d0b0acb91892af984c8afb45493be97fb4f8cf5",
-  "data": {
-   "container_id": "TUTU0165336",
-   "event": "INSPECTED",
-   "actor": "Customs (Tuticorin Commissionerate)",
-   "note": "Risk-based exam completed"
+  {
+    "index": 12,
+    "timestamp": 1791904360.934847,
+    "prev_hash": "9906c1c55efe2c561cb3b3b0945d062212848aa1756e5998cd6a1ac861e42924",
+    "data": {
+      "container_id": "TUTU7010030",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by Wan Hai Lines",
+      "details": {
+        "vessel": "MV Coromandel Trader",
+        "terminal": "DBGT",
+        "trade": "Import",
+        "cargo_category": "Electronics",
+        "cargo_type": "Dry",
+        "owner": "Wan Hai Lines",
+        "berth": "Berth VIII (DBGT)",
+        "arrival_date": "2026-10-13",
+        "eta": "Docked",
+        "origin_destination": "Busan",
+        "teu": 1
+      }
+    },
+    "hash": "ee226be13c16cc636b98eb6ebf11d3ce078ef66541b978ea6ea31b2f4193157d"
   },
-  "hash": "82cd7139952416369a02cc471b890f7aa1257472d7f765082c1f107020a4cfd1"
- },
- {
-  "index": 13,
-  "timestamp": 1790061365.4610748,
-  "prev_hash": "82cd7139952416369a02cc471b890f7aa1257472d7f765082c1f107020a4cfd1",
-  "data": {
-   "container_id": "TUTU0165336",
-   "event": "CLEARED",
-   "actor": "VOC Port Authority",
-   "note": "Customs clearance granted"
+  {
+    "index": 13,
+    "timestamp": 1791904360.934847,
+    "prev_hash": "ee226be13c16cc636b98eb6ebf11d3ce078ef66541b978ea6ea31b2f4193157d",
+    "data": {
+      "container_id": "TUTU7010030",
+      "event": "ARRIVED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "RFID Berth sensor confirmed vessel MV Coromandel Trader docked at Berth VIII (DBGT)"
+    },
+    "hash": "7fc7f8e5b9e51327a0d34e4e18162b4b746451f713374d0859750432bdc6a7b6"
   },
-  "hash": "bb882cec8c05102ec24149018ef6c4734f0f382f6e1872254cfbcf1660155bc2"
- },
- {
-  "index": 14,
-  "timestamp": 1790061365.4621072,
-  "prev_hash": "bb882cec8c05102ec24149018ef6c4734f0f382f6e1872254cfbcf1660155bc2",
-  "data": {
-   "container_id": "TUTU0165336",
-   "event": "PAYMENT_RELEASED",
-   "actor": "SMART CONTRACT (auto)",
-   "note": "Auto-released on customs clearance"
+  {
+    "index": 14,
+    "timestamp": 1791904360.934847,
+    "prev_hash": "7fc7f8e5b9e51327a0d34e4e18162b4b746451f713374d0859750432bdc6a7b6",
+    "data": {
+      "container_id": "TUTU7010030",
+      "event": "INSPECTED",
+      "actor": "Customs (Tuticorin Commissionerate)",
+      "note": "Customs Commissionerate physical inspection & gamma scanner verification passed"
+    },
+    "hash": "01a0caaf0379b79e1ab5ad8b981a3deeee8b59052e545231714adf23737f4484"
   },
-  "hash": "e5c4c1015528cef468c5a60841ab8d9deb2d7c8d3a11884c85e42d05eca310cc"
- },
- {
-  "index": 15,
-  "timestamp": 1790061367.7121093,
-  "prev_hash": "e5c4c1015528cef468c5a60841ab8d9deb2d7c8d3a11884c85e42d05eca310cc",
-  "data": {
-   "container_id": "TUTU0165336",
-   "event": "DISPATCHED",
-   "actor": "Road Transporter",
-   "note": "Exited VOC Port gate toward NH-138"
+  {
+    "index": 15,
+    "timestamp": 1791904361.0226245,
+    "prev_hash": "01a0caaf0379b79e1ab5ad8b981a3deeee8b59052e545231714adf23737f4484",
+    "data": {
+      "container_id": "TUTU7011453",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by Maersk Line",
+      "details": {
+        "vessel": "MV Gulf Pearl",
+        "terminal": "PSA_SICAL",
+        "trade": "Import",
+        "cargo_category": "Chemicals",
+        "cargo_type": "Hazardous",
+        "owner": "Maersk Line",
+        "berth": "Berth IX (PSA SICAL)",
+        "arrival_date": "2026-10-13",
+        "eta": "Docked",
+        "origin_destination": "Rotterdam",
+        "teu": 1
+      }
+    },
+    "hash": "f4f16a2b13921cfcd083620fa2fb030eb60ddb0c9a978bd557cd51b7ca1b61e2"
   },
-  "hash": "23d9f7e9d9791de596b6a571177d4d9dcb232647abbe821b781d1b71eda9c524"
- },
- {
-  "index": 16,
-  "timestamp": 1790061369.8671262,
-  "prev_hash": "23d9f7e9d9791de596b6a571177d4d9dcb232647abbe821b781d1b71eda9c524",
-  "data": {
-   "container_id": "TUTU7316370",
-   "event": "ARRIVED",
-   "actor": "IoT Gate / Berth Sensor",
-   "details": {
-    "vessel": "MV Coromandel Trader",
-    "terminal": "DBGT",
-    "trade": "Export",
-    "cargo_category": "Textiles",
-    "cargo_type": "Dry",
-    "arrival_date": "2026-09-22",
-    "owner": "Maersk Line",
-    "berth": "Inner Harbour Berth IX"
-   }
+  {
+    "index": 16,
+    "timestamp": 1791904361.0226245,
+    "prev_hash": "f4f16a2b13921cfcd083620fa2fb030eb60ddb0c9a978bd557cd51b7ca1b61e2",
+    "data": {
+      "container_id": "TUTU7011453",
+      "event": "ARRIVED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "RFID Berth sensor confirmed vessel MV Gulf Pearl docked at Berth IX (PSA SICAL)"
+    },
+    "hash": "963c5ba8f8dc9c6447594ffb7cc65767e97487834fd89b60d83b81ab92b67762"
   },
-  "hash": "10c8d36218e1e826cc0324d73ac38ca8a54779f3f5f7631c90aa26af4d3920a2"
- },
- {
-  "index": 17,
-  "timestamp": 1790061372.008242,
-  "prev_hash": "10c8d36218e1e826cc0324d73ac38ca8a54779f3f5f7631c90aa26af4d3920a2",
-  "data": {
-   "container_id": "TUTU8984016",
-   "event": "ARRIVED",
-   "actor": "IoT Gate / Berth Sensor",
-   "details": {
-    "vessel": "MV Pearl City",
-    "terminal": "DBGT",
-    "trade": "Import",
-    "cargo_category": "Coal",
-    "cargo_type": "Dry",
-    "arrival_date": "2026-09-22",
-    "owner": "ZIM Shipping",
-    "berth": "Inner Harbour Berth V"
-   }
+  {
+    "index": 17,
+    "timestamp": 1791904361.0226245,
+    "prev_hash": "963c5ba8f8dc9c6447594ffb7cc65767e97487834fd89b60d83b81ab92b67762",
+    "data": {
+      "container_id": "TUTU7011453",
+      "event": "INSPECTED",
+      "actor": "Customs (Tuticorin Commissionerate)",
+      "note": "Customs Commissionerate physical inspection & gamma scanner verification passed"
+    },
+    "hash": "7011fadfafe396db5360daedd9a45f3be2ab03ab4aecbea3a1cf522ccc9d81cf"
   },
-  "hash": "98c33452cc4adcc26cc431190f7e16073f42def4a3c0e2d93250ec8963683443"
- },
- {
-  "index": 18,
-  "timestamp": 1790061374.2651196,
-  "prev_hash": "98c33452cc4adcc26cc431190f7e16073f42def4a3c0e2d93250ec8963683443",
-  "data": {
-   "container_id": "TUTU8984016",
-   "event": "INSPECTED",
-   "actor": "Customs (Tuticorin Commissionerate)",
-   "note": "Risk-based exam completed"
+  {
+    "index": 18,
+    "timestamp": 1791904361.0226245,
+    "prev_hash": "7011fadfafe396db5360daedd9a45f3be2ab03ab4aecbea3a1cf522ccc9d81cf",
+    "data": {
+      "container_id": "TUTU7011453",
+      "event": "CLEARED",
+      "actor": "VOC Port Authority",
+      "note": "Customs out-of-charge issued. VOC Port Authority gate clearance granted"
+    },
+    "hash": "4be2b24e31de098f53a24daaa21ce8ff8a00b762ad408a449a496364f9309896"
   },
-  "hash": "24edbdc3ddc06a9f8f98f0083795d46aedb876c364fce1c0953ac04f85210cca"
- },
- {
-  "index": 19,
-  "timestamp": 1790061376.5243,
-  "prev_hash": "24edbdc3ddc06a9f8f98f0083795d46aedb876c364fce1c0953ac04f85210cca",
-  "data": {
-   "container_id": "TUTU8984016",
-   "event": "CLEARED",
-   "actor": "VOC Port Authority",
-   "note": "Customs clearance granted"
+  {
+    "index": 19,
+    "timestamp": 1791904361.0304198,
+    "prev_hash": "4be2b24e31de098f53a24daaa21ce8ff8a00b762ad408a449a496364f9309896",
+    "data": {
+      "container_id": "TUTU7011453",
+      "event": "PAYMENT_RELEASED",
+      "actor": "Smart Contract (Automated Escrow)",
+      "note": "Smart contract condition verified: Customs clearance hash confirmed. Port dues settled & terminal pass issued."
+    },
+    "hash": "095a070ebab8c892c9a38ce8c0c4f38018ab2bd8725cf259119e638c71f8c16d"
   },
-  "hash": "f5c78d6bbeb0c0459a3e0d6173b2d5192b8a047fdc6749f89192ae5252c4d85b"
- },
- {
-  "index": 20,
-  "timestamp": 1790061376.5262973,
-  "prev_hash": "f5c78d6bbeb0c0459a3e0d6173b2d5192b8a047fdc6749f89192ae5252c4d85b",
-  "data": {
-   "container_id": "TUTU8984016",
-   "event": "PAYMENT_RELEASED",
-   "actor": "SMART CONTRACT (auto)",
-   "note": "Auto-released on customs clearance"
+  {
+    "index": 20,
+    "timestamp": 1791904361.1157522,
+    "prev_hash": "095a070ebab8c892c9a38ce8c0c4f38018ab2bd8725cf259119e638c71f8c16d",
+    "data": {
+      "container_id": "TUTU7012883",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by MSC Mediterranean Shipping",
+      "details": {
+        "vessel": "MV Tamil Nadu Star",
+        "terminal": "DBGT",
+        "trade": "Import",
+        "cargo_category": "Timber",
+        "cargo_type": "Dry",
+        "owner": "MSC Mediterranean Shipping",
+        "berth": "Berth VIII (DBGT)",
+        "arrival_date": "2026-10-13",
+        "eta": "Docked",
+        "origin_destination": "Port Louis",
+        "teu": 2
+      }
+    },
+    "hash": "f22c199b8562d6698aeaa63914c1c8622f3c1e93d19ff84e60f6765ad97c2ba4"
   },
-  "hash": "874c92b052624c5c0716c80a202072906caf8e81b31ff9d24f351c0808123ae3"
- },
- {
-  "index": 21,
-  "timestamp": 1790061378.7959678,
-  "prev_hash": "874c92b052624c5c0716c80a202072906caf8e81b31ff9d24f351c0808123ae3",
-  "data": {
-   "container_id": "TUTU8984016",
-   "event": "DISPATCHED",
-   "actor": "Road Transporter",
-   "note": "Exited VOC Port gate toward NH-138"
+  {
+    "index": 21,
+    "timestamp": 1791904361.119804,
+    "prev_hash": "f22c199b8562d6698aeaa63914c1c8622f3c1e93d19ff84e60f6765ad97c2ba4",
+    "data": {
+      "container_id": "TUTU7012883",
+      "event": "ARRIVED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "RFID Berth sensor confirmed vessel MV Tamil Nadu Star docked at Berth VIII (DBGT)"
+    },
+    "hash": "981433a390e609282c2cf80df659e38f587488f94c2a05fcb2114170b7eb5b00"
   },
-  "hash": "442b3ccaa81701aea9575a05c4f89e957a6da63b05683a4a7928fc5d883675c5"
- },
- {
-  "index": 22,
-  "timestamp": 1790061380.941614,
-  "prev_hash": "442b3ccaa81701aea9575a05c4f89e957a6da63b05683a4a7928fc5d883675c5",
-  "data": {
-   "container_id": "TUTU8582066",
-   "event": "ARRIVED",
-   "actor": "IoT Gate / Berth Sensor",
-   "details": {
-    "vessel": "MV Pearl City",
-    "terminal": "PSA_SICAL",
-    "trade": "Export",
-    "cargo_category": "Seafood",
-    "cargo_type": "Reefer",
-    "arrival_date": "2026-09-22",
-    "owner": "COSCO Shipping",
-    "berth": "Inner Harbour Berth X"
-   }
+  {
+    "index": 22,
+    "timestamp": 1791904361.119804,
+    "prev_hash": "981433a390e609282c2cf80df659e38f587488f94c2a05fcb2114170b7eb5b00",
+    "data": {
+      "container_id": "TUTU7012883",
+      "event": "INSPECTED",
+      "actor": "Customs (Tuticorin Commissionerate)",
+      "note": "Customs Commissionerate physical inspection & gamma scanner verification passed"
+    },
+    "hash": "bf4b2873f75930eb2d63cc01df5189573895a737af412eeae9357b5c58bb4c45"
   },
-  "hash": "3fbbb599493e2a3b17714cfab5ea0190b14869204a2923d28f413f4899bbccdf"
- }
+  {
+    "index": 23,
+    "timestamp": 1791904361.119804,
+    "prev_hash": "bf4b2873f75930eb2d63cc01df5189573895a737af412eeae9357b5c58bb4c45",
+    "data": {
+      "container_id": "TUTU7012883",
+      "event": "CLEARED",
+      "actor": "VOC Port Authority",
+      "note": "Customs out-of-charge issued. VOC Port Authority gate clearance granted"
+    },
+    "hash": "52edf20500253826eb9dcbeaff664a9ff9ce86b8c52aeb41167891e70264334e"
+  },
+  {
+    "index": 24,
+    "timestamp": 1791904361.119804,
+    "prev_hash": "52edf20500253826eb9dcbeaff664a9ff9ce86b8c52aeb41167891e70264334e",
+    "data": {
+      "container_id": "TUTU7012883",
+      "event": "PAYMENT_RELEASED",
+      "actor": "Smart Contract (Automated Escrow)",
+      "note": "Smart contract condition verified: Customs clearance hash confirmed. Port dues settled & terminal pass issued."
+    },
+    "hash": "57ff915c6f6ebc4b4e08c492639466a15d04dc4c782baddb4f47adcff4f0ecc6"
+  },
+  {
+    "index": 25,
+    "timestamp": 1791904361.119804,
+    "prev_hash": "57ff915c6f6ebc4b4e08c492639466a15d04dc4c782baddb4f47adcff4f0ecc6",
+    "data": {
+      "container_id": "TUTU7012883",
+      "event": "DISPATCHED",
+      "actor": "Road Transporter / Logistics Fleet",
+      "note": "Commercial chassis loaded; Gate 1 RFID entry exit pass generated"
+    },
+    "hash": "1b21b8fa5759e3f662d049683200c5510b131180abfefb5bc152f238faa6ed55"
+  },
+  {
+    "index": 26,
+    "timestamp": 1791904361.2179036,
+    "prev_hash": "1b21b8fa5759e3f662d049683200c5510b131180abfefb5bc152f238faa6ed55",
+    "data": {
+      "container_id": "TUTU7014257",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by CMA CGM Group",
+      "details": {
+        "vessel": "MV Palk Strait",
+        "terminal": "PSA_SICAL",
+        "trade": "Import",
+        "cargo_category": "EdibleOil",
+        "cargo_type": "LiquidBulk",
+        "owner": "CMA CGM Group",
+        "berth": "Berth IX (PSA SICAL)",
+        "arrival_date": "2026-10-13",
+        "eta": "Docked",
+        "origin_destination": "Belawan",
+        "teu": 1
+      }
+    },
+    "hash": "d94968801503e42598b57dd831c96fb2e8176875ab077a746f77f2e96ff25201"
+  },
+  {
+    "index": 27,
+    "timestamp": 1791904361.2179036,
+    "prev_hash": "d94968801503e42598b57dd831c96fb2e8176875ab077a746f77f2e96ff25201",
+    "data": {
+      "container_id": "TUTU7014257",
+      "event": "ARRIVED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "RFID Berth sensor confirmed vessel MV Palk Strait docked at Berth IX (PSA SICAL)"
+    },
+    "hash": "d15622754c68779c4963b0eda951310fadd23a8876a80c19180b1788f65a2638"
+  },
+  {
+    "index": 28,
+    "timestamp": 1791904361.2179036,
+    "prev_hash": "d15622754c68779c4963b0eda951310fadd23a8876a80c19180b1788f65a2638",
+    "data": {
+      "container_id": "TUTU7014257",
+      "event": "INSPECTED",
+      "actor": "Customs (Tuticorin Commissionerate)",
+      "note": "Customs Commissionerate physical inspection & gamma scanner verification passed"
+    },
+    "hash": "80ee67bf76b9e76f736c279dacdeed281a208e13073d65550fd65aa7654bf58a"
+  },
+  {
+    "index": 29,
+    "timestamp": 1791904361.2179036,
+    "prev_hash": "80ee67bf76b9e76f736c279dacdeed281a208e13073d65550fd65aa7654bf58a",
+    "data": {
+      "container_id": "TUTU7014257",
+      "event": "CLEARED",
+      "actor": "VOC Port Authority",
+      "note": "Customs out-of-charge issued. VOC Port Authority gate clearance granted"
+    },
+    "hash": "43d4cd4df1d552cc87624dff1473fd89e9397fc21ea8fec0dba7b95160d4a5d0"
+  },
+  {
+    "index": 30,
+    "timestamp": 1791904361.2260077,
+    "prev_hash": "43d4cd4df1d552cc87624dff1473fd89e9397fc21ea8fec0dba7b95160d4a5d0",
+    "data": {
+      "container_id": "TUTU7014257",
+      "event": "PAYMENT_RELEASED",
+      "actor": "Smart Contract (Automated Escrow)",
+      "note": "Smart contract condition verified: Customs clearance hash confirmed. Port dues settled & terminal pass issued."
+    },
+    "hash": "07591753ee483d5839d1569c7ef3cf7bdec74d44b4e26ed8062fc0028c219d82"
+  },
+  {
+    "index": 31,
+    "timestamp": 1791904361.2260077,
+    "prev_hash": "07591753ee483d5839d1569c7ef3cf7bdec74d44b4e26ed8062fc0028c219d82",
+    "data": {
+      "container_id": "TUTU7014257",
+      "event": "DISPATCHED",
+      "actor": "Road Transporter / Logistics Fleet",
+      "note": "Commercial chassis loaded; Gate 1 RFID entry exit pass generated"
+    },
+    "hash": "0418d94209450adba37be2654de6d0902d8c3e06e47194caaaf43802afe4f8b7"
+  },
+  {
+    "index": 32,
+    "timestamp": 1791904361.2260077,
+    "prev_hash": "0418d94209450adba37be2654de6d0902d8c3e06e47194caaaf43802afe4f8b7",
+    "data": {
+      "container_id": "TUTU7014257",
+      "event": "DEPARTED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "Outbound RFID boom barrier opened; container en route via NH-138 Expressway"
+    },
+    "hash": "6d092e33d085bcfed330e60272ee13a2fcd0fa5f60e3ed8f503bebeeaf2c090b"
+  },
+  {
+    "index": 33,
+    "timestamp": 1791904361.315469,
+    "prev_hash": "6d092e33d085bcfed330e60272ee13a2fcd0fa5f60e3ed8f503bebeeaf2c090b",
+    "data": {
+      "container_id": "TUTU7015743",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Manifest & Cargo Declaration filed by Ocean Network Express (ONE)",
+      "details": {
+        "vessel": "MV Manapad Point",
+        "terminal": "DBGT",
+        "trade": "Export",
+        "cargo_category": "Granite",
+        "cargo_type": "Dry",
+        "owner": "Ocean Network Express (ONE)",
+        "berth": "Berth VIII (DBGT)",
+        "arrival_date": "2026-10-13",
+        "eta": "Docked",
+        "origin_destination": "Yokohama",
+        "teu": 1
+      }
+    },
+    "hash": "f27dfdb6c394ae387a10316baa4775edf15dc427d934fa645eeb714a13278d9b"
+  },
+  {
+    "index": 34,
+    "timestamp": 1791904361.315469,
+    "prev_hash": "f27dfdb6c394ae387a10316baa4775edf15dc427d934fa645eeb714a13278d9b",
+    "data": {
+      "container_id": "TUTU7015743",
+      "event": "ARRIVED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "RFID Berth sensor confirmed vessel MV Manapad Point docked at Berth VIII (DBGT)"
+    },
+    "hash": "819a6f8b523a460a3550f15cf56ffff5923af7a077f677031267b6b27f369695"
+  },
+  {
+    "index": 35,
+    "timestamp": 1791904361.315469,
+    "prev_hash": "819a6f8b523a460a3550f15cf56ffff5923af7a077f677031267b6b27f369695",
+    "data": {
+      "container_id": "TUTU7015743",
+      "event": "INSPECTED",
+      "actor": "Customs (Tuticorin Commissionerate)",
+      "note": "Customs Commissionerate physical inspection & gamma scanner verification passed"
+    },
+    "hash": "32b1d4c416b9b7276443bedca748a7d58b39f61939824c9d66ae8829989cde5e"
+  },
+  {
+    "index": 36,
+    "timestamp": 1791904361.3233511,
+    "prev_hash": "32b1d4c416b9b7276443bedca748a7d58b39f61939824c9d66ae8829989cde5e",
+    "data": {
+      "container_id": "TUTU7015743",
+      "event": "CLEARED",
+      "actor": "VOC Port Authority",
+      "note": "Customs out-of-charge issued. VOC Port Authority gate clearance granted"
+    },
+    "hash": "6ce2e6b01ffb29da7e4668dd2099923b025a724de4442b2ae7baa4feaec83dc5"
+  },
+  {
+    "index": 37,
+    "timestamp": 1791904361.3233511,
+    "prev_hash": "6ce2e6b01ffb29da7e4668dd2099923b025a724de4442b2ae7baa4feaec83dc5",
+    "data": {
+      "container_id": "TUTU7015743",
+      "event": "PAYMENT_RELEASED",
+      "actor": "Smart Contract (Automated Escrow)",
+      "note": "Smart contract condition verified: Customs clearance hash confirmed. Port dues settled & terminal pass issued."
+    },
+    "hash": "6b2266b7c0b1453cd78321296f4f43f43ada6880be08094e069b1c3e9970c64e"
+  },
+  {
+    "index": 38,
+    "timestamp": 1791904361.3233511,
+    "prev_hash": "6b2266b7c0b1453cd78321296f4f43f43ada6880be08094e069b1c3e9970c64e",
+    "data": {
+      "container_id": "TUTU7015743",
+      "event": "DISPATCHED",
+      "actor": "Road Transporter / Logistics Fleet",
+      "note": "Commercial chassis loaded; Gate 1 RFID entry exit pass generated"
+    },
+    "hash": "d8dfa1d545ef68221ea7739a60d3e51f518b6d651a5d262adeaa11fcc4891572"
+  },
+  {
+    "index": 39,
+    "timestamp": 1791904361.3292406,
+    "prev_hash": "d8dfa1d545ef68221ea7739a60d3e51f518b6d651a5d262adeaa11fcc4891572",
+    "data": {
+      "container_id": "TUTU7015743",
+      "event": "DEPARTED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "Outbound RFID boom barrier opened; container en route via NH-138 Expressway"
+    },
+    "hash": "8d450f9c36e924f3573dc9133d90762625852dda2769609d225c3b5edcb9e683"
+  },
+  {
+    "index": 40,
+    "timestamp": 1791904492.3692915,
+    "prev_hash": "8d450f9c36e924f3573dc9133d90762625852dda2769609d225c3b5edcb9e683",
+    "data": {
+      "container_id": "TUTU2481346",
+      "event": "INBOUND",
+      "actor": "Shipping Line Agent",
+      "note": "Electronic Bill of Lading filed by Maersk Line",
+      "details": {
+        "vessel": "MV Gulf Pearl",
+        "terminal": "DBGT",
+        "trade": "Export",
+        "cargo_category": "Sugar",
+        "cargo_type": "Dry",
+        "owner": "Maersk Line",
+        "berth": "Berth VIII (DBGT)",
+        "arrival_date": "2026-10-13",
+        "eta": "+4h (Approaching Fairway)"
+      }
+    },
+    "hash": "84fe5818331fb22eedf71c1c20b2cb5305be66906d2c2cc957c293483ceafa01"
+  },
+  {
+    "index": 41,
+    "timestamp": 1791904495.9155138,
+    "prev_hash": "84fe5818331fb22eedf71c1c20b2cb5305be66906d2c2cc957c293483ceafa01",
+    "data": {
+      "container_id": "TUTU2481346",
+      "event": "ARRIVED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "Quay crane offloaded container at Berth VIII (DBGT)"
+    },
+    "hash": "21b18cb147995e33003eef726d0dd9c99c9e25152f103761597069e56af9c092"
+  },
+  {
+    "index": 42,
+    "timestamp": 1791904499.4570043,
+    "prev_hash": "21b18cb147995e33003eef726d0dd9c99c9e25152f103761597069e56af9c092",
+    "data": {
+      "container_id": "TUTU2481346",
+      "event": "INSPECTED",
+      "actor": "Customs (Tuticorin Commissionerate)",
+      "note": "Tuticorin Customs Commissionerate physical verification and seal verification passed"
+    },
+    "hash": "88b29a4fc898bd272abc13d7bde72e634a2bb9900e7521f089c55e6d8d60c85e"
+  },
+  {
+    "index": 43,
+    "timestamp": 1791904502.9994943,
+    "prev_hash": "88b29a4fc898bd272abc13d7bde72e634a2bb9900e7521f089c55e6d8d60c85e",
+    "data": {
+      "container_id": "TUTU2481346",
+      "event": "CLEARED",
+      "actor": "VOC Port Authority",
+      "note": "VOC Port Trust out-of-charge granted. Gate-out clearance sanctioned"
+    },
+    "hash": "06468e64b89916f07d4d0dbda07e29e2de70087bef34a9a21f6e8f0f88810553"
+  },
+  {
+    "index": 44,
+    "timestamp": 1791904503.0026023,
+    "prev_hash": "06468e64b89916f07d4d0dbda07e29e2de70087bef34a9a21f6e8f0f88810553",
+    "data": {
+      "container_id": "TUTU2481346",
+      "event": "PAYMENT_RELEASED",
+      "actor": "Smart Contract (Automated Escrow)",
+      "note": "Smart contract condition verified: Customs clearance hash confirmed. Port dues settled & terminal pass issued."
+    },
+    "hash": "1f398addebe07b1a461e0ccd429f5717344f19c3d4ac48b1822fea4cf0a02831"
+  },
+  {
+    "index": 45,
+    "timestamp": 1791904506.5328882,
+    "prev_hash": "1f398addebe07b1a461e0ccd429f5717344f19c3d4ac48b1822fea4cf0a02831",
+    "data": {
+      "container_id": "TUTU2481346",
+      "event": "DISPATCHED",
+      "actor": "Road Transporter / Logistics Fleet",
+      "note": "Mounted on multi-axle trailer, loaded via Gate 1 corridor"
+    },
+    "hash": "3e754c1ac353613430689f64de451cfb60177dd03887e331d169d4a50894d078"
+  },
+  {
+    "index": 46,
+    "timestamp": 1791904510.0886328,
+    "prev_hash": "3e754c1ac353613430689f64de451cfb60177dd03887e331d169d4a50894d078",
+    "data": {
+      "container_id": "TUTU2481346",
+      "event": "DEPARTED",
+      "actor": "IoT Gate / Berth Sensor",
+      "note": "RFID barrier confirmed exit; en route via NH-138 expressway"
+    },
+    "hash": "c74a1b5917c1724c3b4d142de0d7ddc602676a4a169e4c96eaca4982d94288c9"
+  }
 ]
