@@ -1,0 +1,17 @@
+{
+  "categorical": [
+    "trade",
+    "cargo_category",
+    "cargo_type",
+    "terminal"
+  ],
+  "numeric": [
+    "month",
+    "day_of_week",
+    "is_weekend",
+    "is_holiday",
+    "is_monsoon",
+    "customs_exam",
+    "vessel_queue"
+  ]
+}

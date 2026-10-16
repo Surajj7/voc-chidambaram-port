@@ -1,0 +1,6 @@
+pandas>=2.0
+numpy>=1.24
+scikit-learn>=1.3
+joblib>=1.3
+# backend/ and iot_simulator/ use ONLY the Python standard library.
+# Optional (real blockchain path): npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
