@@ -100,8 +100,8 @@ def _build_pdf(lines):
 
 
 def _report_for_dates(start_date, end_date):
-    start = datetime.combine(start_date, time.min).timestamp()
-    end = datetime.combine(end_date + timedelta(days=1), time.min).timestamp()
+    start = datetime.combine(start_date, datetime_time.min).timestamp()
+    end = datetime.combine(end_date + timedelta(days=1), datetime_time.min).timestamp()
     with LOCK:
         shipments = copy.deepcopy(list(STATE["shipments"].values()))
 
@@ -284,167 +284,173 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         global LEDGER
-        parsed_url = urlsplit(self.path)
-        clean_path = parsed_url.path
+        try:
+            parsed_url = urlsplit(self.path)
+            clean_path = parsed_url.path
 
-        if clean_path in ("/", "/index.html"):
-            public_path = STATIC_DIR / "public.html"
-            content = public_path.read_text(encoding="utf-8")
-            self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.end_headers()
-            self.wfile.write(content.encode("utf-8"))
-
-        elif clean_path in ("/admin", "/dashboard"):
-            dashboard_path = STATIC_DIR / "dashboard.html"
-            content = dashboard_path.read_text(encoding="utf-8")
-            self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.end_headers()
-            self.wfile.write(content.encode("utf-8"))
-
-        elif clean_path == "/api/report.pdf":
-            try:
-                query = parse_qs(parsed_url.query)
-                start_date = date.fromisoformat(query.get("from", [""])[0])
-                end_date = date.fromisoformat(query.get("to", [""])[0])
-                if end_date < start_date:
-                    raise ValueError("The end date must be on or after the start date.")
-                if (end_date - start_date).days > 366:
-                    raise ValueError("Report ranges cannot exceed 366 days.")
-                pdf = _report_for_dates(start_date, end_date)
+            if clean_path in ("/", "/index.html"):
+                public_path = STATIC_DIR / "public.html"
+                content = public_path.read_text(encoding="utf-8")
                 self.send_response(200)
-                self.send_header("Content-Type", "application/pdf")
-                self.send_header(
-                    "Content-Disposition",
-                    f'attachment; filename="voc-container-report-{start_date.isoformat()}-to-{end_date.isoformat()}.pdf"',
-                )
-                self.send_header("Content-Length", str(len(pdf)))
+                self.send_header("Content-Type", "text/html; charset=utf-8")
                 self.end_headers()
-                self.wfile.write(pdf)
-            except (ValueError, IndexError) as error:
-                self._json({"error": str(error) or "Provide valid from and to dates (YYYY-MM-DD)."}, 400)
-
-        elif clean_path == "/api/state":
-            with LOCK:
-                ok, bad = LEDGER.verify()
-                shipments = list(STATE["shipments"].values())
-                # Enrich any legacy shipments
-                for s in shipments:
-                    if not s.get("category_bucket"):
-                        s["category_bucket"] = get_category_bucket(s.get("status", "ARRIVED"))
-                    if s.get("prediction") and not s["prediction"].get("mitigation"):
-                        s["prediction"]["mitigation"] = assess_delay_mitigation(
-                            s["prediction"].get("predicted_delay_hours", 30.0), s.get("details", {})
-                        )
-                save_state(STATE)
-
-            # Operational summaries
-            yet_to_arrive = [s for s in shipments if s.get("category_bucket") == CATEGORY_YET_TO_ARRIVE]
-            in_port = [s for s in shipments if s.get("category_bucket") == CATEGORY_IN_PORT]
-            departed = [s for s in shipments if s.get("category_bucket") == CATEGORY_DEPARTED]
-
-            dwell_times = [
-                s.get("prediction", {}).get("predicted_delay_hours", 0)
-                for s in shipments if s.get("prediction")
-            ]
-            avg_dwell = round(sum(dwell_times) / max(1, len(dwell_times)), 1)
-
-            high_risks = [
-                s for s in shipments
-                if s.get("prediction", {}).get("mitigation", {}).get("risk_level") == "HIGH"
-            ]
-
-            saved_hours = sum(
-                s.get("prediction", {}).get("mitigation", {}).get("estimated_hours_saved", 0)
-                for s in shipments
-            )
-
-            sla_on_track = [
-                s for s in shipments
-                if s.get("prediction", {}).get("predicted_delay_hours", 0) <= 36.0
-            ]
-            sla_pct = round((len(sla_on_track) / max(1, len(shipments))) * 100, 1)
-
-            summary = {
-                "total": len(shipments),
-                "yet_to_arrive": len(yet_to_arrive),
-                "in_port": len(in_port),
-                "departed": len(departed),
-                "avg_dwell_hours": avg_dwell,
-                "high_risk_count": len(high_risks),
-                "hours_saved_ai": round(saved_hours, 1),
-                "sla_compliance_pct": sla_pct,
-            }
-
-            self._json({
-                "shipments": shipments,
-                "summary": summary,
-                "ledger_ok": ok,
-                "ledger_blocks": len(LEDGER.chain),
-                "ledger_tail": LEDGER.chain[-20:],
-                "live_demo": LIVE_DEMO,
-            })
-
-        elif clean_path == "/api/health":
-            try:
-                _load_model()
-                model_ok = True
-            except Exception:
-                model_ok = False
-
-            metrics_path = ROOT_ML / "model" / "metrics.json"
-            metrics = (json.loads(metrics_path.read_text(encoding="utf-8"))
-                       if metrics_path.exists() else {})
-
-            self._json({
-                "model_loaded": model_ok,
-                "metrics": metrics,
-                "ledger_blocks": len(LEDGER.chain),
-                "active_containers": len(STATE.get("shipments", {})),
-            })
-
-        elif clean_path == "/api/demo-tamper":
-            # Demonstrates cryptographic tamper detection by forging a copy of a block
-            tmp = Ledger.__new__(Ledger)
-            tmp.chain = copy.deepcopy(LEDGER.chain)
-            if len(tmp.chain) < 2:
-                self._json({"error": "Need at least 2 blocks to demonstrate tamper"}, 400)
+                self.wfile.write(content.encode("utf-8"))
                 return
 
-            i = max(1, len(tmp.chain) // 2)
-            orig_data = copy.deepcopy(tmp.chain[i]["data"])
-            event_name = orig_data.get("event", "UNKNOWN")
-            orig_hash = tmp.chain[i]["hash"]
+            if clean_path in ("/admin", "/dashboard"):
+                dashboard_path = STATIC_DIR / "dashboard.html"
+                content = dashboard_path.read_text(encoding="utf-8")
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.end_headers()
+                self.wfile.write(content.encode("utf-8"))
+                return
 
-            # Malicious edit simulation: hacker alters the event and note
-            tmp.chain[i]["data"]["event"] = event_name + "_UNAUTHORIZED_TAMPER"
-            tmp.chain[i]["data"]["note"] = "FRAUDULENT RECORD INSERTED BY UNAUTHORIZED PARTY"
+            if clean_path == "/api/report.pdf":
+                try:
+                    query = parse_qs(parsed_url.query)
+                    start_date = date.fromisoformat(query.get("from", [""])[0])
+                    end_date = date.fromisoformat(query.get("to", [""])[0])
+                    if end_date < start_date:
+                        raise ValueError("The end date must be on or after the start date.")
+                    if (end_date - start_date).days > 366:
+                        raise ValueError("Report ranges cannot exceed 366 days.")
+                    pdf = _report_for_dates(start_date, end_date)
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/pdf")
+                    self.send_header(
+                        "Content-Disposition",
+                        f'attachment; filename="voc-container-report-{start_date.isoformat()}-to-{end_date.isoformat()}.pdf"',
+                    )
+                    self.send_header("Content-Length", str(len(pdf)))
+                    self.end_headers()
+                    self.wfile.write(pdf)
+                    return
+                except (ValueError, IndexError) as error:
+                    self._json({"error": str(error) or "Provide valid from and to dates (YYYY-MM-DD)."}, 400)
+                    return
 
-            ok, bad = tmp.verify()
-            self._json({
-                "demo": True,
-                "forged_block": i,
-                "original_event": event_name,
-                "original_hash": orig_hash,
-                "tampered_data": tmp.chain[i]["data"],
-                "detected": (not ok) and bad == i,
-                "message": (
-                    f"Simulated hacker modified block #{i} ('{event_name}'). "
-                    f"Re-verification: {'TAMPER DETECTED at block #' + str(bad) + '! Cryptographic hash broke.' if not ok else 'FAILED to detect!'}"
+            if clean_path == "/api/state":
+                with LOCK:
+                    ok, bad = LEDGER.verify()
+                    shipments = list(STATE["shipments"].values())
+                    for s in shipments:
+                        if not s.get("category_bucket"):
+                            s["category_bucket"] = get_category_bucket(s.get("status", "ARRIVED"))
+                        if s.get("prediction") and not s["prediction"].get("mitigation"):
+                            s["prediction"]["mitigation"] = assess_delay_mitigation(
+                                s["prediction"].get("predicted_delay_hours", 30.0), s.get("details", {})
+                            )
+                    save_state(STATE)
+
+                yet_to_arrive = [s for s in shipments if s.get("category_bucket") == CATEGORY_YET_TO_ARRIVE]
+                in_port = [s for s in shipments if s.get("category_bucket") == CATEGORY_IN_PORT]
+                departed = [s for s in shipments if s.get("category_bucket") == CATEGORY_DEPARTED]
+
+                dwell_times = [
+                    s.get("prediction", {}).get("predicted_delay_hours", 0)
+                    for s in shipments if s.get("prediction")
+                ]
+                avg_dwell = round(sum(dwell_times) / max(1, len(dwell_times)), 1)
+
+                high_risks = [
+                    s for s in shipments
+                    if s.get("prediction", {}).get("mitigation", {}).get("risk_level") == "HIGH"
+                ]
+
+                saved_hours = sum(
+                    s.get("prediction", {}).get("mitigation", {}).get("estimated_hours_saved", 0)
+                    for s in shipments
                 )
-            })
 
-        elif clean_path == "/api/verify":
-            ok, bad = LEDGER.verify()
-            self._json({
-                "ok": ok,
-                "tampered_block": bad,
-                "blocks": len(LEDGER.chain)
-            })
+                sla_on_track = [
+                    s for s in shipments
+                    if s.get("prediction", {}).get("predicted_delay_hours", 0) <= 36.0
+                ]
+                sla_pct = round((len(sla_on_track) / max(1, len(shipments))) * 100, 1)
 
-        else:
+                summary = {
+                    "total": len(shipments),
+                    "yet_to_arrive": len(yet_to_arrive),
+                    "in_port": len(in_port),
+                    "departed": len(departed),
+                    "avg_dwell_hours": avg_dwell,
+                    "high_risk_count": len(high_risks),
+                    "hours_saved_ai": round(saved_hours, 1),
+                    "sla_compliance_pct": sla_pct,
+                }
+
+                self._json({
+                    "shipments": shipments,
+                    "summary": summary,
+                    "ledger_ok": ok,
+                    "ledger_blocks": len(LEDGER.chain),
+                    "ledger_tail": LEDGER.chain[-20:],
+                    "live_demo": LIVE_DEMO,
+                })
+                return
+
+            if clean_path == "/api/health":
+                try:
+                    _load_model()
+                    model_ok = True
+                except Exception:
+                    model_ok = False
+
+                metrics_path = ROOT_ML / "model" / "metrics.json"
+                metrics = (json.loads(metrics_path.read_text(encoding="utf-8")) if metrics_path.exists() else {})
+
+                self._json({
+                    "model_loaded": model_ok,
+                    "metrics": metrics,
+                    "ledger_blocks": len(LEDGER.chain),
+                    "active_containers": len(STATE.get("shipments", {})),
+                })
+                return
+
+            if clean_path == "/api/demo-tamper":
+                tmp = Ledger.__new__(Ledger)
+                tmp.chain = copy.deepcopy(LEDGER.chain)
+                if len(tmp.chain) < 2:
+                    self._json({"error": "Need at least 2 blocks to demonstrate tamper"}, 400)
+                    return
+
+                i = max(1, len(tmp.chain) // 2)
+                orig_data = copy.deepcopy(tmp.chain[i]["data"])
+                event_name = orig_data.get("event", "UNKNOWN")
+                orig_hash = tmp.chain[i]["hash"]
+
+                tmp.chain[i]["data"]["event"] = event_name + "_UNAUTHORIZED_TAMPER"
+                tmp.chain[i]["data"]["note"] = "FRAUDULENT RECORD INSERTED BY UNAUTHORIZED PARTY"
+
+                ok, bad = tmp.verify()
+                self._json({
+                    "demo": True,
+                    "forged_block": i,
+                    "original_event": event_name,
+                    "original_hash": orig_hash,
+                    "tampered_data": tmp.chain[i]["data"],
+                    "detected": (not ok) and bad == i,
+                    "message": (
+                        f"Simulated hacker modified block #{i} ('{event_name}'). "
+                        f"Re-verification: {'TAMPER DETECTED at block #' + str(bad) + '! Cryptographic hash broke.' if not ok else 'FAILED to detect!'}"
+                    )
+                })
+                return
+
+            if clean_path == "/api/verify":
+                ok, bad = LEDGER.verify()
+                self._json({
+                    "ok": ok,
+                    "tampered_block": bad,
+                    "blocks": len(LEDGER.chain)
+                })
+                return
+
             self._json({"error": "Endpoint not found"}, 404)
+        except Exception as error:
+            print(f"[GET ERROR] {self.path}: {type(error).__name__}: {error}")
+            self._json({"error": f"{type(error).__name__}: {error}"}, 500)
 
     def do_POST(self):
         global LEDGER
